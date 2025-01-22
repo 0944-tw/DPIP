@@ -270,45 +270,8 @@ class _SettingsLocationViewState extends State<SettingsLocationView> with Widget
   }
 
   Future<bool> androidCheckBatteryOptimizationPermission(int num) async {
-    if (Platform.isIOS) return true;
-    try {
-      bool status = await DisableBatteryOptimization.isBatteryOptimizationDisabled ?? false;
-      if (status) return true;
-      if (!mounted) return true;
-
-      String contentText =
-          (num == 0) ? context.i18n.auto_location_experience_info : context.i18n.unlimited_permission_experience_info;
-
-      return await showDialog<bool>(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                icon: const Icon(Symbols.my_location),
-                title: Text(context.i18n.power_saving_strategy),
-                content: Text(contentText),
-                actionsAlignment: MainAxisAlignment.spaceBetween,
-                actions: [
-                  TextButton(
-                    child: Text(context.i18n.cancel),
-                    onPressed: () {
-                      Navigator.pop(context, false);
-                    },
-                  ),
-                  FilledButton(
-                    child: Text(context.i18n.confirm),
-                    onPressed: () async {
-                      DisableBatteryOptimization.showDisableBatteryOptimizationSettings();
-                      Navigator.pop(context, false);
-                    },
-                  ),
-                ],
-              );
-            },
-          ) ??
-          false;
-    } catch (err) {
-      return false;
-    }
+    // fuck you check battery optimization
+   return true;
   }
 
   Future toggleAutoLocation() async {
